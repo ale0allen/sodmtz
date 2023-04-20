@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="botao_cancelar">
+    <file>cancelar.png</file>
+  </qresource>
+</RCC>

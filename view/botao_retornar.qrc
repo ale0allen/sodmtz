@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="botao_retornar">
+    <file>icones/retornar.png</file>
+  </qresource>
+</RCC>

@@ -1,59 +1,52 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from controller.sistema import Sistema
 
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(400, 300)
-        self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(30, 110, 61, 51))
-        self.label.setStyleSheet("font: 16pt \"MS Shell Dlg 2\";")
+class Ui_Form(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(400, 300)
+        self.label = QtWidgets.QLabel(Form)
+        self.label.setGeometry(QtCore.QRect(20, 70, 61, 21))
+        self.label.setStyleSheet("font: 15pt \"MS Shell Dlg 2\";")
         self.label.setObjectName("label")
-        self.lineEdit = QtWidgets.QLineEdit(Dialog)
-        self.lineEdit.setGeometry(QtCore.QRect(100, 120, 211, 41))
-        self.lineEdit.setObjectName("lineEdit")
-        self.label_2 = QtWidgets.QLabel(Dialog)
-        self.label_2.setGeometry(QtCore.QRect(80, 20, 241, 51))
-        self.label_2.setStyleSheet("font: 24pt \"MS Shell Dlg 2\";")
-        self.label_2.setObjectName("label_2")
-        self.btSalvar = QtWidgets.QPushButton(Dialog)
-        self.btSalvar.setGeometry(QtCore.QRect(50, 220, 101, 41))
-        self.btSalvar.setStyleSheet("background-color: rgb(0, 255, 0);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 75 12pt \"MS Shell Dlg 2\";")
-        self.btSalvar.setObjectName("btSalvar")
-        self.btCancelar = QtWidgets.QPushButton(Dialog)
-        self.btCancelar.setGeometry(QtCore.QRect(220, 220, 101, 41))
-        self.btCancelar.setStyleSheet("background-color: rgb(255, 0, 0);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 75 12pt \"MS Shell Dlg 2\";")
-        self.btCancelar.setObjectName("btCancelar")
+        self.form_nome = QtWidgets.QLineEdit(Form)
+        self.form_nome.setGeometry(QtCore.QRect(80, 70, 251, 21))
+        self.form_nome.setObjectName("form_nome")
+        self.botao_cancelar = QtWidgets.QPushButton(Form)
+        self.botao_cancelar.setGeometry(QtCore.QRect(60, 170, 75, 71))
+        self.botao_cancelar.setStyleSheet("image: url(:/botao_cancelar/cancelar.png)")
+        self.botao_cancelar.setText("")
+        self.botao_cancelar.setObjectName("botao_cancelar")
+        self.botao_cadastrar = QtWidgets.QPushButton(Form)
+        self.botao_cadastrar.setGeometry(QtCore.QRect(230, 170, 75, 71))
+        self.botao_cadastrar.setStyleSheet("image: url(:/botao_cadastrar/cadastrar.png)")
+        self.botao_cadastrar.setText("")
+        self.botao_cadastrar.setObjectName("botao_cadastrar")
 
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
 
-        self.btSalvar.clicked.connect(self.salvar)
-        self.btCancelar.clicked.connect(self.cancelar)
+        self.botao_cadastrar.clicked.connect(self.cadastrar)
 
-    def retranslateUi(self, Dialog):
-        _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.label.setText(_translate("Dialog", "Nome"))
-        self.label_2.setText(_translate("Dialog", "NOVO SISTEMA"))
-        self.btSalvar.setText(_translate("Dialog", "SALVAR"))
-        self.btCancelar.setText(_translate("Dialog", "CANCELAR"))
-
-    def salvar(self):
+    def cadastrar(self):
+        nome = self.form_nome.text()
+        sist = Sistema(nome=nome)
+        sist.set_sistema()
+        print(sist)
         print('Salvou')
-
-    def cancelar(self):
-        print('Cancelou!')
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Form"))
+        self.label.setText(_translate("Form", "Nome"))
+import botao_cadastrar
+import botao_cancelar
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    Form = QtWidgets.QWidget()
+    ui = Ui_Form()
+    ui.setupUi(Form)
+    Form.show()
     sys.exit(app.exec_())

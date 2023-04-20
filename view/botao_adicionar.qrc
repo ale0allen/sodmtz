@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="botao_adicionar">
+    <file>icones/adicionar.png</file>
+  </qresource>
+</RCC>

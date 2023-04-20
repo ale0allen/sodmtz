@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="botao_cadastrar">
+    <file>cadastrar.png</file>
+  </qresource>
+</RCC>

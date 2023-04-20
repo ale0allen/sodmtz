@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="botao_excluir">
+    <file>icones/excluir.png</file>
+  </qresource>
+</RCC>

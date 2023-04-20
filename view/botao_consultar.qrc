@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="botao_consultar">
+    <file>icones/consultar.png</file>
+  </qresource>
+</RCC>

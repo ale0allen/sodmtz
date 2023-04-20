@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="botao_alterar">
+    <file>icones/alterar.png</file>
+  </qresource>
+</RCC>
