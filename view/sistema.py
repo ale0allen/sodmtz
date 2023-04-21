@@ -1,4 +1,4 @@
-from controller.sistema import Sistema
+from controller.sistema import SistemaController
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import  QTableWidgetItem
 import pandas as pd
@@ -48,9 +48,14 @@ class Ui_Form(object):
 
         #carrega arquivo tabela
         lista = self.todos_sistemas()
-        print(lista)
-        df = pd.DataFrame(lista[:-1], columns = ['Código', 'Nome'])
-        print(df)
+        todas_linhas = []
+        for sis in lista:
+            codigo = sis.codigo
+            nome_sistema = sis.nome
+            filhadaputagem = (codigo,nome_sistema)
+            todas_linhas.append(filhadaputagem)
+        df = pd.DataFrame(todas_linhas[:todas_linhas.__sizeof__()], columns = ['Código', 'Nome'])
+
         self.all_data = df
         numero_linhas = len(self.all_data.index)
         self.tabela.setRowCount(numero_linhas)
@@ -64,7 +69,7 @@ class Ui_Form(object):
         self.tabela.resizeColumnsToContents()
         self.tabela.resizeRowsToContents()
     def todos_sistemas(self):
-        sist = Sistema()
+        sist = SistemaController()
         todos = sist.todos_sistemas()
         return todos
 
