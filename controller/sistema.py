@@ -1,4 +1,5 @@
 from openpyxl import Workbook, load_workbook
+from collections import OrderedDict
 import os
 filename = 'C:\\Users\\Julio\\Documents\\GitHub\\sodmtz\\controller\\Sistemas.xlsx'
 wb = load_workbook(filename=filename)
@@ -63,7 +64,7 @@ class Sistema:
         for linha in range(2, ws.max_row + 1):
             codigo = ws.cell(row=linha, column=1).value
             nome_sistema = ws.cell(row=linha, column=2).value
-            todas_linhas.append({'codigo': codigo, 'nome_sistema': nome_sistema})
+            todas_linhas.append({codigo,nome_sistema})
         return todas_linhas
 
     def __str__(self):

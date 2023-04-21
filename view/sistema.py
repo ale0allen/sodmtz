@@ -1,61 +1,88 @@
+from controller.sistema import Sistema
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import  QTableWidgetItem
+import pandas as pd
 
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(751, 429)
-        self.pushButton = QtWidgets.QPushButton(Form)
-        self.pushButton.setGeometry(QtCore.QRect(0, 0, 91, 101))
-        self.pushButton.setStyleSheet("image: url(:/botao_adicionar/icones/adicionar.png)")
-        self.pushButton.setText("")
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(Form)
-        self.pushButton_2.setGeometry(QtCore.QRect(90, 0, 91, 101))
-        self.pushButton_2.setStyleSheet("image: url(:/botao_alterar/icones/alterar.png)")
-        self.pushButton_2.setText("")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(Form)
-        self.pushButton_3.setGeometry(QtCore.QRect(180, 0, 91, 101))
-        self.pushButton_3.setStyleSheet("image: url(:/botao_consultar/icones/consultar.png)")
-        self.pushButton_3.setText("")
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.pushButton_4 = QtWidgets.QPushButton(Form)
-        self.pushButton_4.setGeometry(QtCore.QRect(270, 0, 91, 101))
-        self.pushButton_4.setStyleSheet("image: url(:/botao_excluir/icones/excluir.png)")
-        self.pushButton_4.setText("")
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.pushButton_5 = QtWidgets.QPushButton(Form)
-        self.pushButton_5.setGeometry(QtCore.QRect(620, 0, 91, 101))
-        self.pushButton_5.setStyleSheet("image: url(:/botao_retornar/icones/retornar.png)")
-        self.pushButton_5.setText("")
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.tableWidget = QtWidgets.QTableWidget(Form)
-        self.tableWidget.setGeometry(QtCore.QRect(20, 180, 711, 221))
-        self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(2)
-        self.tableWidget.setRowCount(0)
+        Form.resize(751, 387)
+        self.botao_adicionar = QtWidgets.QPushButton(Form)
+        self.botao_adicionar.setGeometry(QtCore.QRect(0, 0, 91, 101))
+        self.botao_adicionar.setStyleSheet("image: url(:/botao_adicionar/icones/adicionar.png)")
+        self.botao_adicionar.setText("")
+        self.botao_adicionar.setObjectName("botao_adicionar")
+        self.botao_alterar = QtWidgets.QPushButton(Form)
+        self.botao_alterar.setGeometry(QtCore.QRect(90, 0, 91, 101))
+        self.botao_alterar.setStyleSheet("image: url(:/botao_alterar/icones/alterar.png)")
+        self.botao_alterar.setText("")
+        self.botao_alterar.setObjectName("botao_alterar")
+        self.botao_consultar = QtWidgets.QPushButton(Form)
+        self.botao_consultar.setGeometry(QtCore.QRect(180, 0, 91, 101))
+        self.botao_consultar.setStyleSheet("image: url(:/botao_consultar/icones/consultar.png)")
+        self.botao_consultar.setText("")
+        self.botao_consultar.setObjectName("botao_consultar")
+        self.botao_excluir = QtWidgets.QPushButton(Form)
+        self.botao_excluir.setGeometry(QtCore.QRect(270, 0, 91, 101))
+        self.botao_excluir.setStyleSheet("image: url(:/botao_excluir/icones/excluir.png)")
+        self.botao_excluir.setText("")
+        self.botao_excluir.setObjectName("botao_excluir")
+        self.botao_retornar = QtWidgets.QPushButton(Form)
+        self.botao_retornar.setGeometry(QtCore.QRect(620, 0, 91, 101))
+        self.botao_retornar.setStyleSheet("image: url(:/botao_retornar/icones/retornar.png)")
+        self.botao_retornar.setText("")
+        self.botao_retornar.setObjectName("botao_retornar")
+        self.tabela = QtWidgets.QTableWidget(Form)
+        self.tabela.setGeometry(QtCore.QRect(20, 180, 711, 221))
+        self.tabela.setObjectName("tabela")
+        self.tabela.setColumnCount(2)
+        self.tabela.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(0, item)
+        self.tabela.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(1, item)
+        self.tabela.setHorizontalHeaderItem(1, item)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+        #carrega arquivo tabela
+        lista = self.todos_sistemas()
+        print(lista)
+        df = pd.DataFrame(lista[:-1], columns = ['Código', 'Nome'])
+        print(df)
+        self.all_data = df
+        numero_linhas = len(self.all_data.index)
+        self.tabela.setRowCount(numero_linhas)
+        self.tabela.setHorizontalHeaderLabels(self.all_data.columns)
+
+        for i in range(numero_linhas):
+            for j in range(len(self.all_data.columns)):
+                print(self.all_data.iat[i,j])
+                self.tabela.setItem(i,j, QTableWidgetItem(str(self.all_data.iat[i,j])))
+
+        self.tabela.resizeColumnsToContents()
+        self.tabela.resizeRowsToContents()
+    def todos_sistemas(self):
+        sist = Sistema()
+        todos = sist.todos_sistemas()
+        return todos
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        item = self.tableWidget.horizontalHeaderItem(0)
+        item = self.tabela.horizontalHeaderItem(0)
         item.setText(_translate("Form", "Código"))
-        item = self.tableWidget.horizontalHeaderItem(1)
+        item = self.tabela.horizontalHeaderItem(1)
         item.setText(_translate("Form", "Nome"))
 import botao_adicionar
 import botao_alterar
 import botao_consultar
 import botao_excluir
 import botao_retornar
+
+
+
 
 
 if __name__ == "__main__":

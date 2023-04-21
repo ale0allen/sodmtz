@@ -35,6 +35,7 @@ class Ui_Form(object):
         sist.set_sistema()
         print(sist)
         print('Salvou')
+
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
