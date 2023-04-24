@@ -8,6 +8,8 @@ import botao_consultar
 import botao_excluir
 import botao_retornar
 from novo_sistema import novo_sistema_form
+from geral_sistemas import geral_sistemas
+import variaveis
 
 class tela_sistema(object):
     def setupUi(self, Form):
@@ -48,6 +50,7 @@ class tela_sistema(object):
         item = QtWidgets.QTableWidgetItem()
         self.tabela.setHorizontalHeaderItem(1, item)
         self.botao_adicionar.clicked.connect(self.tela_novo_sistema)
+        self.botao_consultar.clicked.connect(self.tela_consulta_sistema)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -84,7 +87,19 @@ class tela_sistema(object):
         self.ui = novo_sistema_form()
         self.ui.setupUi(self.Form)
         self.Form.show()
+
         print('abriu tela novo sistema')
+
+    def tela_consulta_sistema(self):
+        ativa = self.tabela.currentRow()
+        id = self.tabela.item(ativa, 0)
+        variaveis.id_consulta = id.text()
+        variaveis.tipo_tela = 'consulta'
+        self.Form = QtWidgets.QWidget()
+        self.ui = geral_sistemas()
+        self.ui.setupUi(self.Form)
+        self.Form.show()
+
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))

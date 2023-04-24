@@ -32,7 +32,7 @@ class SistemaController:
 
     def get_sistema(self):
         for linha in range(2, ws.max_row + 1):
-            if ws.cell(row=linha, column=2).value == self.nome:
+            if ws.cell(row=linha, column=1).value == self.codigo:
                 nome_sistema = ws.cell(row=linha, column=2).value
                 return f'Sistema encontrado! \n Código => {self.codigo} \n Nome: {nome_sistema}'
         print('Sistema não encontrado')
