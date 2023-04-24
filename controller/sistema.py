@@ -31,10 +31,11 @@ class SistemaController:
             self.nome = nome
 
     def get_sistema(self):
+        print(f'Esse é o codigo a ser buscado: {self.codigo}')
         for linha in range(2, ws.max_row + 1):
             if ws.cell(row=linha, column=1).value == self.codigo:
-                nome_sistema = ws.cell(row=linha, column=2).value
-                return f'Sistema encontrado! \n Código => {self.codigo} \n Nome: {nome_sistema}'
+                self.nome = ws.cell(row=linha, column=2).value
+                return  self
         print('Sistema não encontrado')
         return None
 

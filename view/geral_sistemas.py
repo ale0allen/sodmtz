@@ -36,17 +36,17 @@ class geral_sistemas(object):
         # self.form_codigo.setText(variaveis.id_consulta)
 
         if variaveis.tipo_tela == 'consulta':
-            obj = SistemaController(codigo=variaveis.id_consulta)
-            print(obj)
-            obj.get_sistema()
+            obj = SistemaController(codigo=int(variaveis.id_consulta))
+            pqp = obj.get_sistema()
             self.form_codigo = QtWidgets.QLineEdit(Form)
             self.form_codigo.setGeometry(QtCore.QRect(80, 60, 51, 21))
             self.form_codigo.setObjectName("form_codigo")
             self.form_codigo.setEnabled(False)
-            self.form_codigo.setText(variaveis.id_consulta)
+            self.form_codigo.setText(str(pqp.codigo))
             self.form_nome = QtWidgets.QLineEdit(Form)
             self.form_nome.setGeometry(QtCore.QRect(80, 110, 251, 21))
             self.form_nome.setObjectName("form_nome")
+            self.form_nome.setText(str(pqp.nome))
             self.form_nome.setEnabled(False)
 
         self.retranslateUi(Form)
