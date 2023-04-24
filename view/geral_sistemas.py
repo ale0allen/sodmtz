@@ -49,6 +49,21 @@ class geral_sistemas(object):
             self.form_nome.setText(str(pqp.nome))
             self.form_nome.setEnabled(False)
 
+        if variaveis.tipo_tela == 'altera':
+            obj = SistemaController(codigo=int(variaveis.id_consulta))
+            pqp = obj.get_sistema()
+            self.form_codigo = QtWidgets.QLineEdit(Form)
+            self.form_codigo.setGeometry(QtCore.QRect(80, 60, 51, 21))
+            self.form_codigo.setObjectName("form_codigo")
+            self.form_codigo.setEnabled(False)
+            self.form_codigo.setText(str(pqp.codigo))
+            self.form_nome = QtWidgets.QLineEdit(Form)
+            self.form_nome.setGeometry(QtCore.QRect(80, 110, 251, 21))
+            self.form_nome.setObjectName("form_nome")
+            self.form_nome.setText(str(pqp.nome))
+            self.form_nome.setEnabled(True)
+            self.botao_cadastrar.clicked.connect(self.salva_alteracao)
+
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -57,6 +72,11 @@ class geral_sistemas(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.label.setText(_translate("Form", "Nome"))
         self.cod.setText(_translate("Form", "Cód"))
+
+    def salva_alteracao(self):
+        obj = SistemaController(codigo=int(variaveis.id_consulta))
+        obj.update_sistema(novo_nome=self.form_nome.text())
+        print('Alterouuuu')
 
 
 

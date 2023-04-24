@@ -51,6 +51,8 @@ class tela_sistema(object):
         self.tabela.setHorizontalHeaderItem(1, item)
         self.botao_adicionar.clicked.connect(self.tela_novo_sistema)
         self.botao_consultar.clicked.connect(self.tela_consulta_sistema)
+        self.botao_alterar.clicked.connect(self.tela_altera_sistema)
+        self.botao_excluir.clicked.connect(self.exclui_sistema)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -82,6 +84,14 @@ class tela_sistema(object):
         todos = sist.todos_sistemas()
         return todos
 
+    def exclui_sistema(self):
+        ativa = self.tabela.currentRow()
+        id = self.tabela.item(ativa, 0)
+        sist = SistemaController(codigo=int(id.text()))
+        sist.delete_sistema()
+        print('Sistema Deletado')
+
+
     def tela_novo_sistema(self):
         self.Form = QtWidgets.QWidget()
         self.ui = novo_sistema_form()
@@ -89,6 +99,16 @@ class tela_sistema(object):
         self.Form.show()
 
         print('abriu tela novo sistema')
+
+    def tela_altera_sistema(self):
+        ativa = self.tabela.currentRow()
+        id = self.tabela.item(ativa, 0)
+        variaveis.id_consulta = id.text()
+        variaveis.tipo_tela = 'altera'
+        self.Form = QtWidgets.QWidget()
+        self.ui = geral_sistemas()
+        self.ui.setupUi(self.Form)
+        self.Form.show()
 
     def tela_consulta_sistema(self):
         ativa = self.tabela.currentRow()
