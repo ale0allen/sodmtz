@@ -2,9 +2,14 @@ from controller.sistema import SistemaController
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import  QTableWidgetItem
 import pandas as pd
+import botao_adicionar
+import botao_alterar
+import botao_consultar
+import botao_excluir
+import botao_retornar
+from novo_sistema import novo_sistema_form
 
-
-class Ui_Form(object):
+class tela_sistema(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(751, 387)
@@ -42,6 +47,7 @@ class Ui_Form(object):
         self.tabela.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabela.setHorizontalHeaderItem(1, item)
+        self.botao_adicionar.clicked.connect(self.tela_novo_sistema)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -73,6 +79,12 @@ class Ui_Form(object):
         todos = sist.todos_sistemas()
         return todos
 
+    def tela_novo_sistema(self):
+        self.Form = QtWidgets.QWidget()
+        self.ui = novo_sistema_form()
+        self.ui.setupUi(self.Form)
+        self.Form.show()
+        print('abriu tela novo sistema')
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
@@ -80,11 +92,6 @@ class Ui_Form(object):
         item.setText(_translate("Form", "Código"))
         item = self.tabela.horizontalHeaderItem(1)
         item.setText(_translate("Form", "Nome"))
-import botao_adicionar
-import botao_alterar
-import botao_consultar
-import botao_excluir
-import botao_retornar
 
 
 
@@ -94,7 +101,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = Ui_Form()
+    ui = tela_sistema()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())

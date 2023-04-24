@@ -1,9 +1,14 @@
 from openpyxl import Workbook, load_workbook
 from collections import OrderedDict
 import os
-filename = 'C:\\Users\\user\\estacio\\sodmtz\\controller\\Sistemas.xlsx'
-wb = load_workbook(filename=filename)
-ws = wb.active
+
+diretorio_atual = os.getcwd()
+diretorio_pai = os.path.dirname(diretorio_atual)
+diretorio_pai = diretorio_pai + '\\planilhas'
+
+# construir um caminho relativo para um arquivo no diretório atual
+caminho_rel = os.path.join(diretorio_pai, "Sistemas.xlsx")
+filename = caminho_rel
 
 class Sistema:
     def __init__(self, codigo=None, nome=None):

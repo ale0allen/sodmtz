@@ -2,7 +2,16 @@ from openpyxl import Workbook, load_workbook
 from collections import OrderedDict
 import os
 
-filename = 'C:\\Users\\user\\estacio\\sodmtz\\controller\\Sistemas.xlsx'
+diretorio_atual = os.getcwd()
+diretorio_pai = os.path.dirname(diretorio_atual)
+diretorio_pai = diretorio_pai + '\\planilhas'
+
+# construir um caminho relativo para um arquivo no diretório atual
+caminho_rel = os.path.join(diretorio_pai, "Sistemas.xlsx")
+filename = caminho_rel
+
+
+
 wb = load_workbook(filename=filename)
 ws = wb.active
 
@@ -10,6 +19,16 @@ from model.sistema import Sistema
 
 
 class SistemaController:
+
+    def __init__(self, codigo=None, nome=None):
+        if codigo is None:
+            self.codigo = ""
+        else:
+            self.codigo = codigo
+        if nome is None:
+            self.nome = ""
+        else:
+            self.nome = nome
 
     def get_sistema(self):
         for linha in range(2, ws.max_row + 1):
