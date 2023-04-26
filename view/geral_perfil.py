@@ -77,6 +77,41 @@ class geral_perfil(object):
             self.form_descricao.setText(str(pqp.descricao_perfil))
             self.form_descricao.setEnabled(False)
 
+        if variaveis.tipo_tela == "altera":
+            perf = PerfilController(codigo_perfil=int(variaveis.id_consulta))
+            pqp = perf.get_perfil()
+            print(pqp.codigo_perfil)
+
+            self.form_codigo = QtWidgets.QLineEdit(Form)
+            self.form_codigo.setGeometry(QtCore.QRect(90, 30, 71, 21))
+            self.form_codigo.setObjectName("form_codigo")
+            self.form_codigo.setText(str(pqp.codigo_perfil))
+            self.form_codigo.setEnabled(False)
+
+            self.form_nome = QtWidgets.QLineEdit(Form)
+            self.form_nome.setGeometry(QtCore.QRect(90, 70, 241, 21))
+            self.form_nome.setObjectName("form_nome")
+            self.form_nome.setText(str(pqp.nome_perfil))
+
+
+            self.box_sistema = QtWidgets.QComboBox(Form)
+            self.box_sistema.setGeometry(QtCore.QRect(90, 100, 241, 22))
+            self.box_sistema.setObjectName("box_sistema")
+            lista = self.carrega_opcoes()
+            for sis in lista:
+                self.box_sistema.addItem("")
+            self.box_sistema.setCurrentText(str(pqp.nome_sistema))
+
+
+            self.form_descricao = QtWidgets.QTextEdit(Form)
+            self.form_descricao.setGeometry(QtCore.QRect(93, 140, 231, 71))
+            self.form_descricao.setObjectName("form_descricao")
+            self.form_descricao.setText(str(pqp.descricao_perfil))
+
+            self.botao_cadastrar.clicked.connect(self.altera_perfil)
+
+
+
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -89,6 +124,15 @@ class geral_perfil(object):
         todos = sist.todos_sistemas()
         return todos
 
+    def altera_perfil(self):
+        obj = PerfilController(codigo_perfil=variaveis.id_consulta)
+        print(self.form_nome.text())
+        print(self.box_sistema.currentText())
+        print(self.form_descricao.toPlainText())
+        obj.update_perfil(novo_nome=self.form_nome.text(), novo_sistema=self.box_sistema.currentText(),
+                          nova_descricao=self.form_descricao.toPlainText())
+        print('alterou')
+
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
@@ -98,7 +142,7 @@ class geral_perfil(object):
         lista = self.todos_sistemas()
         indice = 0
         for sis in lista:
-            self.box_sistema.setItemText(indice, _translate("Form", sis.nome))
+            self.box_sistema.setItemText(indice, _translate("Form", str(sis.nome)))
             indice += 1
 
         self.label_4.setText(_translate("Form", "Código"))

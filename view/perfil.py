@@ -56,6 +56,8 @@ class tela_perfis(object):
         self.retranslateUi(Form)
         self.botao_adicionar.clicked.connect(self.abre_tela_adicionar)
         self.botao_consultar.clicked.connect(self.tela_consulta_perfil)
+        self.botao_alterar.clicked.connect(self.tela_altera_perfil)
+        self.botao_excluir.clicked.connect(self.exclui_perfil)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -103,6 +105,24 @@ class tela_perfis(object):
         id = self.tabela.item(ativa, 0)
         variaveis.id_consulta = id.text()
         variaveis.tipo_tela = 'consulta'
+        self.Form = QtWidgets.QWidget()
+        self.ui = geral_perfil()
+        self.ui.setupUi(self.Form)
+        self.Form.show()
+
+    def exclui_perfil(self):
+        ativa = self.tabela.currentRow()
+        id = self.tabela.item(ativa,0)
+        obj = PerfilController(codigo_perfil=int(id.text()))
+        obj.delete_perfil()
+        self.carrega_tabela()
+
+
+    def tela_altera_perfil(self):
+        ativa = self.tabela.currentRow()
+        id = self.tabela.item(ativa, 0)
+        variaveis.id_consulta = id.text()
+        variaveis.tipo_tela = 'altera'
         self.Form = QtWidgets.QWidget()
         self.ui = geral_perfil()
         self.ui.setupUi(self.Form)

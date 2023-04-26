@@ -60,6 +60,24 @@ class PerfilController:
         print('Sistema não encontrado')
         return None
 
+    def update_perfil(self, novo_nome, novo_sistema, nova_descricao):
+        print(f'Esse é o codigo {self.codigo_perfil}')
+        for linha in range(2, ws.max_row + 1):
+            if ws.cell(row=linha, column=1).value == int(self.codigo_perfil):
+                ws.cell(row=linha, column=2).value = novo_nome
+                ws.cell(row=linha, column=3).value = novo_sistema
+                ws.cell(row=linha, column=4).value = nova_descricao
+                wb.save(filename=filename)
+        print('Sistema Atualizado!')
+
+    def delete_perfil(self):
+        print(self.codigo_perfil)
+        for linha in range(2, ws.max_row + 1):
+            if ws.cell(row=linha, column=1).value == self.codigo_perfil:
+                ws.delete_rows(linha)
+                wb.save(filename=filename)
+        print('Perfil Deletado!')
+
     def todos_perfis(self):
         todas_linhas = []
         for linha in range(2, ws.max_row + 1):
