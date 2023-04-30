@@ -46,6 +46,7 @@ class tela_novo_perfil(object):
         self.form_descricao.setObjectName("form_descricao")
 
         self.botao_cadastrar.clicked.connect(self.cadastrar)
+        self.botao_cancelar.clicked.connect(lambda: self.sairTela(Form))
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -70,6 +71,9 @@ class tela_novo_perfil(object):
         perfil.set_perfil()
         print(perfil)
         print('Cadastrou!!')
+
+    def sairTela(self, formDadosPerfil):
+        formDadosPerfil.close()
 
     def carrega_opcoes(self):
         lista = self.todos_sistemas()

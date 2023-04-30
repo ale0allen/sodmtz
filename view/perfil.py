@@ -103,12 +103,16 @@ class tela_perfis(object):
     def tela_consulta_perfil(self):
         ativa = self.tabela.currentRow()
         id = self.tabela.item(ativa, 0)
-        variaveis.id_consulta = id.text()
-        variaveis.tipo_tela = 'consulta'
-        self.Form = QtWidgets.QWidget()
-        self.ui = geral_perfil()
-        self.ui.setupUi(self.Form)
-        self.Form.show()
+        if id is None:
+            self.todos_perfis()
+        else:
+            variaveis.id_consulta = id.text()
+            variaveis.tipo_tela = 'consulta'
+            self.Form = QtWidgets.QWidget()
+            self.ui = geral_perfil()
+            self.ui.setupUi(self.Form)
+            self.Form.show()
+
 
     def exclui_perfil(self):
         ativa = self.tabela.currentRow()
@@ -121,12 +125,15 @@ class tela_perfis(object):
     def tela_altera_perfil(self):
         ativa = self.tabela.currentRow()
         id = self.tabela.item(ativa, 0)
-        variaveis.id_consulta = id.text()
-        variaveis.tipo_tela = 'altera'
-        self.Form = QtWidgets.QWidget()
-        self.ui = geral_perfil()
-        self.ui.setupUi(self.Form)
-        self.Form.show()
+        if id is None:
+            self.todos_perfis()
+        else:
+            variaveis.id_consulta = id.text()
+            variaveis.tipo_tela = 'altera'
+            self.Form = QtWidgets.QWidget()
+            self.ui = geral_perfil()
+            self.ui.setupUi(self.Form)
+            self.Form.show()
 
 if __name__ == "__main__":
     import sys

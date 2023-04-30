@@ -21,11 +21,6 @@ class geral_perfil(object):
         self.botao_cancelar.setStyleSheet("image: url(:/botao_cancelar/cancelar.png)")
         self.botao_cancelar.setText("")
         self.botao_cancelar.setObjectName("botao_cancelar")
-        self.botao_cadastrar = QtWidgets.QPushButton(Form)
-        self.botao_cadastrar.setGeometry(QtCore.QRect(230, 220, 75, 71))
-        self.botao_cadastrar.setStyleSheet("image: url(:/botao_cadastrar/cadastrar.png)")
-        self.botao_cadastrar.setText("")
-        self.botao_cadastrar.setObjectName("botao_cadastrar")
         self.label_2 = QtWidgets.QLabel(Form)
         self.label_2.setGeometry(QtCore.QRect(20, 100, 61, 21))
         self.label_2.setStyleSheet("font: 11pt \"MS Shell Dlg 2\";")
@@ -76,6 +71,7 @@ class geral_perfil(object):
             self.form_descricao.setObjectName("form_descricao")
             self.form_descricao.setText(str(pqp.descricao_perfil))
             self.form_descricao.setEnabled(False)
+            self.botao_cancelar.clicked.connect(lambda: self.sairTela(Form))
 
         if variaveis.tipo_tela == "altera":
             perf = PerfilController(codigo_perfil=int(variaveis.id_consulta))
@@ -108,8 +104,13 @@ class geral_perfil(object):
             self.form_descricao.setObjectName("form_descricao")
             self.form_descricao.setText(str(pqp.descricao_perfil))
 
+            self.botao_cadastrar = QtWidgets.QPushButton(Form)
+            self.botao_cadastrar.setGeometry(QtCore.QRect(230, 220, 75, 71))
+            self.botao_cadastrar.setStyleSheet("image: url(:/botao_cadastrar/cadastrar.png)")
+            self.botao_cadastrar.setText("")
+            self.botao_cadastrar.setObjectName("botao_cadastrar")
             self.botao_cadastrar.clicked.connect(self.altera_perfil)
-
+            self.botao_cancelar.clicked.connect(lambda: self.sairTela(Form))
 
 
         self.retranslateUi(Form)
@@ -132,6 +133,9 @@ class geral_perfil(object):
         obj.update_perfil(novo_nome=self.form_nome.text(), novo_sistema=self.box_sistema.currentText(),
                           nova_descricao=self.form_descricao.toPlainText())
         print('alterou')
+
+    def sairTela(self, formDadosPerfil):
+        formDadosPerfil.close()
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
