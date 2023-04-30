@@ -90,6 +90,5 @@ class PerfilController:
         return todas_linhas
 
 
-
     def __str__(self):
         return f'nome: {self.nome_perfil} - sistema: {self.nome_sistema} - descrição: {self.descricao_perfil}'

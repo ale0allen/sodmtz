@@ -1,17 +1,13 @@
-from controller.sistema import SistemaController
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import  QTableWidgetItem
-import pandas as pd
 import botao_adicionar
 import botao_alterar
 import botao_consultar
 import botao_excluir
 import botao_retornar
-from novo_sistema import novo_sistema_form
-from geral_sistemas import geral_sistemas
-import variaveis
 
-class tela_sistema(object):
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(791, 523)
@@ -49,79 +45,9 @@ class tela_sistema(object):
         self.tabela.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabela.setHorizontalHeaderItem(1, item)
-        self.botao_adicionar.clicked.connect(self.tela_novo_sistema)
-        self.botao_consultar.clicked.connect(self.tela_consulta_sistema)
-        self.botao_alterar.clicked.connect(self.tela_altera_sistema)
-        self.botao_excluir.clicked.connect(self.exclui_sistema)
-        self.carrega_tabela()
+
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
-
-
-    def carrega_tabela(self):
-        lista = self.todos_sistemas()
-        todas_linhas = []
-        for sis in lista:
-            codigo = sis.codigo
-            nome_sistema = sis.nome
-            filhadaputagem = (codigo, nome_sistema)
-            todas_linhas.append(filhadaputagem)
-        df = pd.DataFrame(todas_linhas[:todas_linhas.__sizeof__()], columns=['Código', 'Nome'])
-
-        self.all_data = df
-        numero_linhas = len(self.all_data.index)
-        self.tabela.setRowCount(numero_linhas)
-        self.tabela.setHorizontalHeaderLabels(self.all_data.columns)
-
-        for i in range(numero_linhas):
-            for j in range(len(self.all_data.columns)):
-                print(self.all_data.iat[i, j])
-                self.tabela.setItem(i, j, QTableWidgetItem(str(self.all_data.iat[i, j])))
-
-        self.tabela.resizeColumnsToContents()
-        self.tabela.resizeRowsToContents()
-
-    def todos_sistemas(self):
-        sist = SistemaController()
-        todos = sist.todos_sistemas()
-        return todos
-
-    def exclui_sistema(self):
-        ativa = self.tabela.currentRow()
-        id = self.tabela.item(ativa, 0)
-        sist = SistemaController(codigo=int(id.text()))
-        sist.delete_sistema()
-        print('Sistema Deletado')
-        self.carrega_tabela()
-
-
-    def tela_novo_sistema(self):
-        self.Form = QtWidgets.QWidget()
-        self.ui = novo_sistema_form()
-        self.ui.setupUi(self.Form)
-        self.Form.show()
-
-        print('abriu tela novo sistema')
-
-    def tela_altera_sistema(self):
-        ativa = self.tabela.currentRow()
-        id = self.tabela.item(ativa, 0)
-        variaveis.id_consulta = id.text()
-        variaveis.tipo_tela = 'altera'
-        self.Form = QtWidgets.QWidget()
-        self.ui = geral_sistemas()
-        self.ui.setupUi(self.Form)
-        self.Form.show()
-
-    def tela_consulta_sistema(self):
-        ativa = self.tabela.currentRow()
-        id = self.tabela.item(ativa, 0)
-        variaveis.id_consulta = id.text()
-        variaveis.tipo_tela = 'consulta'
-        self.Form = QtWidgets.QWidget()
-        self.ui = geral_sistemas()
-        self.ui.setupUi(self.Form)
-        self.Form.show()
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -133,13 +59,11 @@ class tela_sistema(object):
 
 
 
-
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = tela_sistema()
+    ui = Ui_Form()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
