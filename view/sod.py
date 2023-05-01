@@ -12,7 +12,7 @@ from controller.sod import SodController
 from geral_sod import geral_sod
 import variaveis
 
-class Ui_Form(object):
+class tela_matriz(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(791, 523)
@@ -141,7 +141,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = Ui_Form()
+    ui = tela_matriz()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())

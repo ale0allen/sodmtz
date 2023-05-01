@@ -7,6 +7,7 @@ import icone_sistema
 from PyQt5 import QtCore, QtGui, QtWidgets
 from sistema import tela_sistema
 from perfil import tela_perfis
+from sod import tela_matriz
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -66,6 +67,7 @@ class Ui_MainWindow(object):
         self.botao_sistema_consulta.clicked.connect(self.abre_tela_sistema)
         self.menuSistemas.triggered.connect(self.abre_tela_sistema)
         self.botao_perfil_consulta.clicked.connect(self.abre_tela_perfil)
+        self.botao_matriz_consulta.clicked.connect(self.abre_tela_matriz)
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -79,6 +81,13 @@ class Ui_MainWindow(object):
     def abre_tela_perfil(self):
         self.Form = QtWidgets.QWidget()
         self.ui = tela_perfis()
+        self.ui.setupUi(self.Form)
+        self.Form.show()
+        print('Tela Sistema')
+
+    def abre_tela_matriz(self):
+        self.Form = QtWidgets.QWidget()
+        self.ui = tela_matriz()
         self.ui.setupUi(self.Form)
         self.Form.show()
         print('Tela Sistema')
