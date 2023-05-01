@@ -35,6 +35,7 @@ class geral_perfil(object):
         self.label_4.setGeometry(QtCore.QRect(20, 30, 61, 21))
         self.label_4.setStyleSheet("font: 13pt \"MS Shell Dlg 2\";")
         self.label_4.setObjectName("label_4")
+        self.botao_cancelar.clicked.connect(lambda: self.sairTela(Form))
 
 
         if variaveis.tipo_tela == "consulta":
@@ -71,7 +72,6 @@ class geral_perfil(object):
             self.form_descricao.setObjectName("form_descricao")
             self.form_descricao.setText(str(pqp.descricao_perfil))
             self.form_descricao.setEnabled(False)
-            self.botao_cancelar.clicked.connect(lambda: self.sairTela(Form))
 
         if variaveis.tipo_tela == "altera":
             perf = PerfilController(codigo_perfil=int(variaveis.id_consulta))
@@ -110,7 +110,7 @@ class geral_perfil(object):
             self.botao_cadastrar.setText("")
             self.botao_cadastrar.setObjectName("botao_cadastrar")
             self.botao_cadastrar.clicked.connect(self.altera_perfil)
-            self.botao_cancelar.clicked.connect(lambda: self.sairTela(Form))
+
 
 
         self.retranslateUi(Form)

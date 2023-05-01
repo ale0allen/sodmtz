@@ -1,6 +1,7 @@
 import botao_adicionar
 import botao_alterar
 import botao_consultar
+import botao_recarregar
 import botao_excluir
 import botao_retornar
 
@@ -31,8 +32,13 @@ class tela_matriz(object):
         self.botao_consultar.setStyleSheet("image: url(:/botao_consultar/icones/consultar.png)")
         self.botao_consultar.setText("")
         self.botao_consultar.setObjectName("botao_consultar")
+        self.botao_recarregar = QtWidgets.QPushButton(Form)
+        self.botao_recarregar.setGeometry(QtCore.QRect(270, 0, 91, 101))
+        self.botao_recarregar.setStyleSheet("image: url(:/botao_recarregar/icones/recarregar.png)")
+        self.botao_recarregar.setText("")
+        self.botao_recarregar.setObjectName("botao_recarregar")
         self.botao_excluir = QtWidgets.QPushButton(Form)
-        self.botao_excluir.setGeometry(QtCore.QRect(270, 0, 91, 101))
+        self.botao_excluir.setGeometry(QtCore.QRect(360, 0, 91, 101))
         self.botao_excluir.setStyleSheet("image: url(:/botao_excluir/icones/excluir.png)")
         self.botao_excluir.setText("")
         self.botao_excluir.setObjectName("botao_excluir")
@@ -65,6 +71,15 @@ class tela_matriz(object):
         item.setText(_translate("Form", "Código"))
         item = self.tabela.horizontalHeaderItem(1)
         item.setText(_translate("Form", "Código Perfil 1"))
+
+        self.botao_recarregar.setToolTip(_translate("Form", "<html><head/><body><p><br/></p></body></html>"))
+        self.botao_retornar.setToolTip(_translate("Form", "<html><head/><body><p><br/></p></body></html>"))
+
+        self.botao_recarregar.clicked.connect(self.carrega_tabela)
+        self.botao_retornar.clicked.connect(lambda: self.sairTela(Form))
+
+    def sairTela(self, formSOD):
+        formSOD.close()
 
     def tela_consulta_sod(self):
         ativa = self.tabela.currentRow()

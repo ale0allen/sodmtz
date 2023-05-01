@@ -1,5 +1,5 @@
 <RCC>
-  <qresource prefix="newPrefix">
+  <qresource prefix="botao_recarregar">
     <file>icones/recarregar.png</file>
   </qresource>
 </RCC>

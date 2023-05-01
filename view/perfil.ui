@@ -61,10 +61,26 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="botao_excluir">
+  <widget class="QPushButton" name="botao_recarregar">
    <property name="geometry">
     <rect>
      <x>270</x>
+     <y>0</y>
+     <width>91</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/botao_recarregar/icones/recarregar.png)</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="botao_excluir">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
      <y>0</y>
      <width>91</width>
      <height>101</height>
@@ -120,6 +136,7 @@
   <include location="botao_excluir.qrc"/>
   <include location="botao_consultar.qrc"/>
   <include location="botao_alterar.qrc"/>
+  <include location="botao_recarregar.qrc"/>
  </resources>
  <connections/>
 </ui>

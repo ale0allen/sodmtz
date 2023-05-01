@@ -30,6 +30,10 @@ class novo_sistema_form(object):
         QtCore.QMetaObject.connectSlotsByName(Form)
 
         self.botao_cadastrar.clicked.connect(self.cadastrar)
+        self.botao_cancelar.clicked.connect(lambda: self.sairTela(Form))
+
+    def sairTela(self, formSistema):
+        formSistema.close()
 
     def cadastrar(self):
         nome = self.form_nome.text()

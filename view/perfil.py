@@ -8,6 +8,7 @@ import variaveis
 import botao_adicionar
 import botao_alterar
 import botao_consultar
+import botao_recarregar
 import botao_excluir
 import botao_retornar
 from controller.perfil import PerfilController
@@ -33,8 +34,13 @@ class tela_perfis(object):
         self.botao_consultar.setStyleSheet("image: url(:/botao_consultar/icones/consultar.png)")
         self.botao_consultar.setText("")
         self.botao_consultar.setObjectName("botao_consultar")
+        self.botao_recarregar = QtWidgets.QPushButton(Form)
+        self.botao_recarregar.setGeometry(QtCore.QRect(270, 0, 91, 101))
+        self.botao_recarregar.setStyleSheet("image: url(:/botao_recarregar/icones/recarregar.png)")
+        self.botao_recarregar.setText("")
+        self.botao_recarregar.setObjectName("botao_recarregar")
         self.botao_excluir = QtWidgets.QPushButton(Form)
-        self.botao_excluir.setGeometry(QtCore.QRect(270, 0, 91, 101))
+        self.botao_excluir.setGeometry(QtCore.QRect(360, 0, 91, 101))
         self.botao_excluir.setStyleSheet("image: url(:/botao_excluir/icones/excluir.png)")
         self.botao_excluir.setText("")
         self.botao_excluir.setObjectName("botao_excluir")
@@ -63,12 +69,20 @@ class tela_perfis(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Perfis"))
+        self.botao_recarregar.setToolTip(_translate("Form", "<html><head/><body><p><br/></p></body></html>"))
+        self.botao_retornar.setToolTip(_translate("Form", "<html><head/><body><p><br/></p></body></html>"))
+
+        self.botao_recarregar.clicked.connect(self.carrega_tabela)
+        self.botao_retornar.clicked.connect(lambda: self.sairTela(Form))
 
     def abre_tela_adicionar(self):
         self.Form = QtWidgets.QWidget()
         self.ui = tela_novo_perfil()
         self.ui.setupUi(self.Form)
         self.Form.show()
+
+    def sairTela(self, formPerfil):
+        formPerfil.close()
 
     def carrega_tabela(self):
         lista = self.todos_perfis()

@@ -44,6 +44,11 @@ class tela_novo_sod(object):
         self.botao_cadastrar.clicked.connect(self.novo_sod)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+        self.botao_cancelar.clicked.connect(lambda: self.sairTela(Form))
+
+    def sairTela(self, formSOD):
+        formSOD.close()
+
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))

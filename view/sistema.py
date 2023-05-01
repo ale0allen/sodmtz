@@ -5,6 +5,7 @@ import pandas as pd
 import botao_adicionar
 import botao_alterar
 import botao_consultar
+import botao_recarregar
 import botao_excluir
 import botao_retornar
 from novo_sistema import novo_sistema_form
@@ -30,8 +31,13 @@ class tela_sistema(object):
         self.botao_consultar.setStyleSheet("image: url(:/botao_consultar/icones/consultar.png)")
         self.botao_consultar.setText("")
         self.botao_consultar.setObjectName("botao_consultar")
+        self.botao_recarregar = QtWidgets.QPushButton(Form)
+        self.botao_recarregar.setGeometry(QtCore.QRect(270, 0, 91, 101))
+        self.botao_recarregar.setStyleSheet("image: url(:/botao_recarregar/icones/recarregar.png)")
+        self.botao_recarregar.setText("")
+        self.botao_recarregar.setObjectName("botao_recarregar")
         self.botao_excluir = QtWidgets.QPushButton(Form)
-        self.botao_excluir.setGeometry(QtCore.QRect(270, 0, 91, 101))
+        self.botao_excluir.setGeometry(QtCore.QRect(360, 0, 91, 101))
         self.botao_excluir.setStyleSheet("image: url(:/botao_excluir/icones/excluir.png)")
         self.botao_excluir.setText("")
         self.botao_excluir.setObjectName("botao_excluir")
@@ -131,8 +137,14 @@ class tela_sistema(object):
         item = self.tabela.horizontalHeaderItem(1)
         item.setText(_translate("Form", "Nome"))
 
+        self.botao_recarregar.setToolTip(_translate("Form", "<html><head/><body><p><br/></p></body></html>"))
+        self.botao_retornar.setToolTip(_translate("Form", "<html><head/><body><p><br/></p></body></html>"))
 
+        self.botao_recarregar.clicked.connect(self.carrega_tabela)
+        self.botao_retornar.clicked.connect(lambda: self.sairTela(Form))
 
+    def sairTela(self, formSistema):
+        formSistema.close()
 
 
 if __name__ == "__main__":
