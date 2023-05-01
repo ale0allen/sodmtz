@@ -57,7 +57,7 @@ class PerfilController:
                 self.nome_sistema = ws.cell(row=linha, column=3).value
                 self.descricao_perfil = ws.cell(row=linha, column=4).value
                 return self
-        print('Sistema não encontrado')
+        print('Perfil')
         return None
 
     def update_perfil(self, novo_nome, novo_sistema, nova_descricao):

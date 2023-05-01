@@ -104,6 +104,19 @@ class SodController:
         print('Sistema não encontrado')
         return None
 
+    def update_sod(self, novo_codigo_perfil1, novo_nome_perfil1, novo_sistema_perfil1, novo_codigo_perfil2,
+                   novo_nome_perfil2, novo_sistema_perfil2):
+        for linha in range(2, ws.max_row + 1):
+            if ws.cell(row=linha, column=1).value == self.codigo:
+                ws.cell(row=linha, column=2).value = novo_codigo_perfil1
+                ws.cell(row=linha, column=3).value = novo_nome_perfil1
+                ws.cell(row=linha, column=4).value = novo_sistema_perfil1
+                ws.cell(row=linha, column=5).value = novo_codigo_perfil2
+                ws.cell(row=linha, column=6).value = novo_nome_perfil2
+                ws.cell(row=linha, column=7).value = novo_sistema_perfil2
+                wb.save(filename=filename)
+        print('Sistema Atualizado!')
+
     def delete_sod(self):
         for linha in range(2, ws.max_row + 1):
             if ws.cell(row=linha, column=1).value == self.codigo:

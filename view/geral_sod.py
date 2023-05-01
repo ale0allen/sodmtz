@@ -4,6 +4,7 @@ import botao_cancelar
 from PyQt5 import QtCore, QtGui, QtWidgets
 import variaveis
 from controller.sod import SodController
+from controller.perfil import PerfilController
 
 class geral_sod(object):
     def setupUi(self, Form):
@@ -111,7 +112,7 @@ class geral_sod(object):
             pqp = obj.get_sod()
 
             lista = self.carrega_opcoes()
-
+            print(lista)
 
             self.form_codigo = QtWidgets.QLineEdit(Form)
             self.form_codigo.setGeometry(QtCore.QRect(80, 20, 51, 21))
@@ -123,7 +124,8 @@ class geral_sod(object):
             self.box_codigo_perfil1.setGeometry(QtCore.QRect(80, 110, 131, 21))
             self.box_codigo_perfil1.setObjectName("box_codigo_perfil1")
             for sis in lista:
-                self.box_codigo_perfil1.addItem("")
+                self.box_codigo_perfil1.addItem(str(sis.codigo))
+            self.box_codigo_perfil1.currentIndexChanged.connect(self.atualizar_info1)
 
 
             self.form_nome_perfil_1 = QtWidgets.QLineEdit(Form)
@@ -142,7 +144,8 @@ class geral_sod(object):
             self.box_codigo_perfil2.setGeometry(QtCore.QRect(350, 110, 131, 21))
             self.box_codigo_perfil2.setObjectName("box_codigo_perfil2")
             for sis in lista:
-                self.box_codigo_perfil2.addItem("")
+                self.box_codigo_perfil2.addItem(str(sis.codigo))
+            self.box_codigo_perfil2.currentIndexChanged.connect(self.atualizar_info2)
 
             self.form_nome_perfil2 = QtWidgets.QLineEdit(Form)
             self.form_nome_perfil2.setGeometry(QtCore.QRect(350, 150, 131, 21))
@@ -155,6 +158,8 @@ class geral_sod(object):
             self.form_sistema_perfil2.setObjectName("form_sistema_perfil2")
             self.form_sistema_perfil2.setText(str(pqp.sistema_perfil2))
             self.form_sistema_perfil2.setEnabled(False)
+
+            self.botao_cadastrar.clicked.connect(self.altera_sod)
 
 
 
@@ -171,21 +176,38 @@ class geral_sod(object):
         self.label_6.setText(_translate("Form", "Cód"))
         self.label_7.setText(_translate("Form", "Nome"))
         self.label_8.setText(_translate("Form", "Perfil 2"))
-        lista = self.todos_sod()
-        # indice = 0
-        # for sis in lista:
-        #     self.box_codigo_perfil1.setItemText(indice, _translate("Form",
-        #                                                     f'{sis.codigo_perfil}'))
-        #     indice += 1
-        # indice = 0
-        # for sis in lista:
-        #     self.box_codigo_perfil2.setItemText(indice, _translate("Form",
-        #                                                     f'{sis.codigo_perfil}'))
-        #     indice += 1
+
+    def atualizar_info1(self, index):
+        opcao_selecionada = self.box_codigo_perfil1.currentText()
+        obj = PerfilController(codigo_perfil=int(opcao_selecionada))
+        dados = obj.get_perfil()
+        self.form_nome_perfil_1.setText(dados.nome_perfil)
+        self.form_sistema_perfil1.setText(dados.nome_sistema)
+
+    def atualizar_info2(self, index):
+        opcao_selecionada = self.box_codigo_perfil2.currentText()
+        obj = PerfilController(codigo_perfil=int(opcao_selecionada))
+        dados = obj.get_perfil()
+        self.form_nome_perfil2.setText(dados.nome_perfil)
+        self.form_sistema_perfil2.setText(dados.nome_sistema)
 
     def carrega_opcoes(self):
         lista = self.todos_sod()
         return lista
+
+    def altera_sod(self):
+        obj = SodController(codigo=int(variaveis.id_consulta))
+        novo_codigo_perfil1 = self.box_codigo_perfil1.currentText()
+        novo_nome_perfil1 = self.form_nome_perfil_1.text()
+        novo_sistema_perfil1 = self.form_sistema_perfil1.text()
+        novo_codigo_perfil2 = self.box_codigo_perfil2.currentText()
+        novo_nome_perfil2 = self.form_nome_perfil2.text()
+        novo_sistema_perfil2 = self.form_sistema_perfil2.text()
+
+        obj.update_sod(novo_codigo_perfil1=novo_codigo_perfil1, novo_nome_perfil1=novo_nome_perfil1,
+                       novo_sistema_perfil1=novo_sistema_perfil1, novo_codigo_perfil2=novo_codigo_perfil2,
+                       novo_nome_perfil2=novo_nome_perfil2, novo_sistema_perfil2=novo_sistema_perfil2)
+        print('alterou')
 
     def todos_sod(self):
         sod = SodController()
