@@ -71,7 +71,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/botao_excluir/icones/excluir.png)</string>
+    <string notr="true">image: url(:/newPrefix/icones/recarregar.png)</string>
    </property>
    <property name="text">
     <string/>
@@ -113,9 +113,26 @@
     </property>
    </column>
   </widget>
+  <widget class="QPushButton" name="botao_excluir_2">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>0</y>
+     <width>91</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/botao_excluir/icones/excluir.png)</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources>
   <include location="botao_adicionar.qrc"/>
+  <include location="botao_recarregar.qrc"/>
   <include location="botao_retornar.qrc"/>
   <include location="botao_excluir.qrc"/>
   <include location="botao_consultar.qrc"/>
