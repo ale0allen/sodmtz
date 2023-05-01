@@ -4,9 +4,9 @@ import botao_cancelar
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from controller.perfil import PerfilController
-from controller.sod import sodController
+from controller.sod import SodController
 
-class Ui_Form(object):
+class tela_novo_sod(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(400, 300)
@@ -79,7 +79,7 @@ class Ui_Form(object):
         codigo_perfil2 = perfil2[0]
         nome_perfil2 = perfil2[1]
         sistema_perfil2 = perfil2[2]
-        sod = sodController(codigo_perfil1=codigo_perfil1,nome_perfil1=nome_perfil1,sistema_perfil1=sistema_perfil1,
+        sod = SodController(codigo_perfil1=codigo_perfil1,nome_perfil1=nome_perfil1,sistema_perfil1=sistema_perfil1,
                             codigo_perfil2=codigo_perfil2, nome_perfil2=nome_perfil2, sistema_perfil2=sistema_perfil2)
         sod.set_sod()
 
@@ -88,7 +88,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = Ui_Form()
+    ui = tela_novo_sod()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())

@@ -15,31 +15,36 @@ class Sod:
                  codigo_perfil2=None, nome_perfil2=None, sistema_perfil2=None):
 
         if codigo is None:
-            self.codigo = ''
+            self.codigo = ""
         else:
             self.codigo = codigo
-        if self.codigo_perfil1 is None:
-            self.codigo_perfil1 = ''
+
+        if codigo_perfil1 is None:
+            self.codigo_perfil1 = ""
         else:
             self.codigo_perfil1 = codigo_perfil1
+
         if nome_perfil1 is None:
-            self.nome_perfil1 = ''
+            self.nome_perfil1 = ""
         else:
             self.nome_perfil1 = nome_perfil1
+
         if sistema_perfil1 is None:
-            self.sistema_perfil1 = ''
+            self.sistema_perfil1 = ""
         else:
             self.sistema_perfil1 = sistema_perfil1
+
         if codigo_perfil2 is None:
-            self.codigo_perfil2 = ''
+            self.codigo_perfil2 = ""
         else:
             self.codigo_perfil2 = codigo_perfil2
         if nome_perfil2 is None:
-            self.nome_perfil2 = ''
+            self.nome_perfil2 = ""
         else:
             self.nome_perfil2 = nome_perfil2
+
         if sistema_perfil2 is None:
-            self.sistema_perfil2 = ''
+            self.sistema_perfil2 = ""
         else:
             self.sistema_perfil2 = sistema_perfil2
 

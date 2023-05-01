@@ -18,18 +18,45 @@ ws = wb.active
 from model.sod import Sod
 
 
-class sodController:
+class SodController:
 
     def __init__(self, codigo=None, codigo_perfil1=None, nome_perfil1=None, sistema_perfil1=None,
                  codigo_perfil2=None, nome_perfil2=None, sistema_perfil2=None):
-        self.codigo = codigo
-        self.codigo_perfil1 = codigo_perfil1
-        self.nome_perfil1 = nome_perfil1
-        self.sistema_perfil1 = sistema_perfil1
-        self.codigo_perfil2 = codigo_perfil2
-        self.nome_perfil2 = nome_perfil2
-        self.sistema_perfil2 = sistema_perfil2
-        print('obj criado')
+
+        if codigo is None:
+            self.codigo = ""
+        else:
+            self.codigo = codigo
+
+        if codigo_perfil1 is None:
+            self.codigo_perfil1 = ""
+        else:
+            self.codigo_perfil1 = codigo_perfil1
+
+        if nome_perfil1 is None:
+            self.nome_perfil1 = ""
+        else:
+            self.nome_perfil1 = nome_perfil1
+
+        if sistema_perfil1 is None:
+            self.sistema_perfil1 = ""
+        else:
+            self.sistema_perfil1 = sistema_perfil1
+
+        if codigo_perfil2 is None:
+            self.codigo_perfil2 = ""
+        else:
+            self.codigo_perfil2 = codigo_perfil2
+
+        if nome_perfil2 is None:
+            self.nome_perfil2 = ""
+        else:
+            self.nome_perfil2 = nome_perfil2
+
+        if sistema_perfil2 is None:
+            self.sistema_perfil2 = ""
+        else:
+            self.sistema_perfil2 = sistema_perfil2
 
     def set_sod(self):
         codigo_perfil1 = self.codigo_perfil1
@@ -49,5 +76,37 @@ class sodController:
         ws.cell(row=proxima_linha, column=7).value = sistema_perfil2
         wb.save(filename=filename)
 
-    def __str__(self):
-        return f'Nome1: {self.nome_perfil1}'
+    def todos_sod(self):
+        todas_linhas = []
+        for linha in range(2, ws.max_row + 1):
+            codigo = ws.cell(row=linha, column=1).value
+            codigo_perfil1 = ws.cell(row=linha, column=2).value
+            nome_perfil1 = ws.cell(row=linha, column=3).value
+            sistema_perfil1 = ws.cell(row=linha, column=4).value
+            codigo_perfil2 = ws.cell(row=linha, column=5).value
+            nome_perfil2 = ws.cell(row=linha, column=6).value
+            sistema_perfil2 = ws.cell(row=linha, column=7).value
+            sod = Sod(codigo,codigo_perfil1, nome_perfil1, sistema_perfil1, codigo_perfil2, nome_perfil2, sistema_perfil2)
+            todas_linhas.append(sod)
+        return todas_linhas
+
+    def get_sod(self):
+        print(f'Esse é o codigo a ser buscado: {self.codigo}')
+        for linha in range(2, ws.max_row + 1):
+            if ws.cell(row=linha, column=1).value == self.codigo:
+                self.codigo_perfil1 = ws.cell(row=linha, column=2).value
+                self.nome_perfil1 = ws.cell(row=linha, column=3).value
+                self.sistema_perfil1 = ws.cell(row=linha, column=4).value
+                self.codigo_perfil2 = ws.cell(row=linha, column=5).value
+                self.nome_perfil2 = ws.cell(row=linha, column=6).value
+                self.sistema_perfil2 = ws.cell(row=linha, column=7).value
+                return self
+        print('Sistema não encontrado')
+        return None
+
+    def delete_sod(self):
+        for linha in range(2, ws.max_row + 1):
+            if ws.cell(row=linha, column=1).value == self.codigo:
+                ws.delete_rows(linha)
+                wb.save(filename=filename)
+
