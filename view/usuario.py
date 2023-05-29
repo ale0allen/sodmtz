@@ -1,5 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from controller.usuario import UsuarioController
+from PyQt5.QtWidgets import  QTableWidgetItem
+import pandas as pd
 
 import botao_adicionar
 import botao_alterar
@@ -52,6 +54,7 @@ class Ui_Form(object):
         self.tabela.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabela.setHorizontalHeaderItem(1, item)
+        self.carrega_tabela()
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -60,19 +63,19 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         item = self.tabela.horizontalHeaderItem(0)
-        item.setText(_translate("Form", "Código"))
+        item.setText(_translate("Form", "CPF"))
         item = self.tabela.horizontalHeaderItem(1)
         item.setText(_translate("Form", "Nome"))
 
     def carrega_tabela(self):
-        lista = self.todos_sistemas()
+        lista = self.todos_usuarios()
         todas_linhas = []
         for sis in lista:
-            codigo = "{:015}".format(sis.codigo)
-            nome_sistema = sis.nome
-            filhadaputagem = (codigo, nome_sistema)
+            cpf = sis.cpf_usuario
+            nome = sis.nome_usuario
+            filhadaputagem = (cpf, nome)
             todas_linhas.append(filhadaputagem)
-        df = pd.DataFrame(todas_linhas[:todas_linhas.__sizeof__()], columns=['Código', 'Nome'])
+        df = pd.DataFrame(todas_linhas[:todas_linhas.__sizeof__()], columns=['CPF', 'Nome'])
 
         self.all_data = df
         numero_linhas = len(self.all_data.index)
@@ -89,7 +92,7 @@ class Ui_Form(object):
 
     def todos_usuarios(self):
         users = UsuarioController()
-        todos = users.todos_sistemas()
+        todos = users.todos_usuarios()
         return todos
 
 
