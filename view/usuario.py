@@ -1,18 +1,15 @@
-from controller.sistema import SistemaController
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import  QTableWidgetItem
-import pandas as pd
+from controller.usuario import UsuarioController
+
 import botao_adicionar
 import botao_alterar
 import botao_consultar
-import botao_recarregar
 import botao_excluir
+import botao_recarregar
 import botao_retornar
-from novo_sistema import novo_sistema_form
-from geral_sistemas import geral_sistemas
-import variaveis
 
-class tela_sistema(object):
+
+class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(791, 523)
@@ -55,14 +52,17 @@ class tela_sistema(object):
         self.tabela.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabela.setHorizontalHeaderItem(1, item)
-        self.botao_adicionar.clicked.connect(self.tela_novo_sistema)
-        self.botao_consultar.clicked.connect(self.tela_consulta_sistema)
-        self.botao_alterar.clicked.connect(self.tela_altera_sistema)
-        self.botao_excluir.clicked.connect(self.exclui_sistema)
-        self.carrega_tabela()
+
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Form"))
+        item = self.tabela.horizontalHeaderItem(0)
+        item.setText(_translate("Form", "Código"))
+        item = self.tabela.horizontalHeaderItem(1)
+        item.setText(_translate("Form", "Nome"))
 
     def carrega_tabela(self):
         lista = self.todos_sistemas()
@@ -87,71 +87,17 @@ class tela_sistema(object):
         self.tabela.resizeColumnsToContents()
         self.tabela.resizeRowsToContents()
 
-    def todos_sistemas(self):
-        sist = SistemaController()
-        todos = sist.todos_sistemas()
+    def todos_usuarios(self):
+        users = UsuarioController()
+        todos = users.todos_sistemas()
         return todos
-
-    def exclui_sistema(self):
-        ativa = self.tabela.currentRow()
-        id = self.tabela.item(ativa, 0)
-        sist = SistemaController(codigo=int(id.text()))
-        sist.delete_sistema()
-        print('Sistema Deletado')
-        self.carrega_tabela()
-
-
-    def tela_novo_sistema(self):
-        self.Form = QtWidgets.QWidget()
-        self.ui = novo_sistema_form()
-        self.ui.setupUi(self.Form)
-        self.Form.show()
-
-        print('abriu tela novo sistema')
-
-    def tela_altera_sistema(self):
-        ativa = self.tabela.currentRow()
-        id = self.tabela.item(ativa, 0)
-        variaveis.id_consulta = id.text()
-        variaveis.tipo_tela = 'altera'
-        self.Form = QtWidgets.QWidget()
-        self.ui = geral_sistemas()
-        self.ui.setupUi(self.Form)
-        self.Form.show()
-
-    def tela_consulta_sistema(self):
-        ativa = self.tabela.currentRow()
-        id = self.tabela.item(ativa, 0)
-        variaveis.id_consulta = id.text()
-        variaveis.tipo_tela = 'consulta'
-        self.Form = QtWidgets.QWidget()
-        self.ui = geral_sistemas()
-        self.ui.setupUi(self.Form)
-        self.Form.show()
-
-    def retranslateUi(self, Form):
-        _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        item = self.tabela.horizontalHeaderItem(0)
-        item.setText(_translate("Form", "Código"))
-        item = self.tabela.horizontalHeaderItem(1)
-        item.setText(_translate("Form", "Nome"))
-
-        self.botao_recarregar.setToolTip(_translate("Form", "<html><head/><body><p><br/></p></body></html>"))
-        self.botao_retornar.setToolTip(_translate("Form", "<html><head/><body><p><br/></p></body></html>"))
-
-        self.botao_recarregar.clicked.connect(self.carrega_tabela)
-        self.botao_retornar.clicked.connect(lambda: self.sairTela(Form))
-
-    def sairTela(self, formSistema):
-        formSistema.close()
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = tela_sistema()
+    ui = Ui_Form()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
