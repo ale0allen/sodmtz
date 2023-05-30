@@ -40,15 +40,14 @@ class UsuarioController:
     def get_usuario(self):
         print(f'Esse é o cpf a ser buscado: {self.cpf_usuario}')
         for linha in range(2, ws.max_row + 1):
-            if ws.cell(row=linha, column=2).value == self.cpf_usuario:
+            if ws.cell(row=linha, column=2).value == int(self.cpf_usuario):
                 self.nome_usuario = ws.cell(row=linha, column=3).value
                 return self
-        print('Perfil')
         return None
 
 
     def update_usuario(self, novo_nome):
-        print(f'Esse é o cpf {self.cpf_usuario}')
+        print(f'Esse é o cpf: {self.cpf_usuario}')
         for linha in range(2, ws.max_row + 1):
             if ws.cell(row=linha, column=2).value == int(self.cpf_usuario):
                 ws.cell(row=linha, column=3).value = novo_nome

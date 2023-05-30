@@ -2,6 +2,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from controller.usuario import UsuarioController
 from PyQt5.QtWidgets import  QTableWidgetItem
 import pandas as pd
+import variaveis
+from geral_usuarios import geral_usuarios
 
 import botao_adicionar
 import botao_alterar
@@ -56,6 +58,9 @@ class Ui_Form(object):
         self.tabela.setHorizontalHeaderItem(1, item)
         self.carrega_tabela()
 
+        self.botao_consultar.clicked.connect(self.tela_consulta_usuario)
+        self.botao_alterar.clicked.connect(self.tela_altera_usuario)
+
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -94,6 +99,28 @@ class Ui_Form(object):
         users = UsuarioController()
         todos = users.todos_usuarios()
         return todos
+
+    def tela_consulta_usuario(self):
+        ativa = self.tabela.currentRow()
+        cpf = self.tabela.item(ativa, 0)
+        variaveis.cpf_usuario = cpf.text()
+        variaveis.tipo_tela = 'consulta'
+        self.Form = QtWidgets.QWidget()
+        self.ui = geral_usuarios()
+        self.ui.setupUi(self.Form)
+        self.Form.show()
+
+    def tela_altera_usuario(self):
+        ativa = self.tabela.currentRow()
+        cpf = self.tabela.item(ativa, 0)
+        variaveis.cpf_usuario = cpf.text()
+        variaveis.tipo_tela = 'altera'
+        self.Form = QtWidgets.QWidget()
+        self.ui = geral_usuarios()
+        self.ui.setupUi(self.Form)
+        self.Form.show()
+
+
 
 
 if __name__ == "__main__":
