@@ -40,8 +40,9 @@ class UsuarioController:
     def get_usuario(self):
         print(f'Esse é o cpf a ser buscado: {self.cpf_usuario}')
         for linha in range(2, ws.max_row + 1):
-            if ws.cell(row=linha, column=2).value == int(self.cpf_usuario):
+            if ws.cell(row=linha, column=2).value == self.cpf_usuario:
                 self.nome_usuario = ws.cell(row=linha, column=3).value
+
                 return self
         return None
 
@@ -49,7 +50,7 @@ class UsuarioController:
     def update_usuario(self, novo_nome):
         print(f'Esse é o cpf: {self.cpf_usuario}')
         for linha in range(2, ws.max_row + 1):
-            if ws.cell(row=linha, column=2).value == int(self.cpf_usuario):
+            if ws.cell(row=linha, column=2).value == self.cpf_usuario:
                 ws.cell(row=linha, column=3).value = novo_nome
                 wb.save(filename=filename)
         print('Usuario Atualizado!')
@@ -63,3 +64,15 @@ class UsuarioController:
             user = UsuarioController(cpf_usuario=cpf, nome_usuario=nome_usuario)
             todas_linhas.append(user)
         return todas_linhas
+
+    def delete_usuario(self):
+        print('======')
+        print(type(self.cpf_usuario))
+        for linha in range(2, ws.max_row + 1):
+            print('-------')
+            print(ws.cell(row=linha, column=2).value)
+            if ws.cell(row=linha, column=2).value == str(self.cpf_usuario):
+                # ws.cell(row=linha, column=3).value = 1
+                ws.delete_rows(linha)
+                wb.save(filename=filename)
+        print('Sistema Deletado!')

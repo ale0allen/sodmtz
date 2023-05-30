@@ -5,6 +5,8 @@ import pandas as pd
 import variaveis
 from geral_usuarios import geral_usuarios
 from novo_usuario import novo_usuario_form
+from vincula_perfil import vincula_perfil
+
 
 import botao_adicionar
 import botao_alterar
@@ -12,6 +14,10 @@ import botao_consultar
 import botao_excluir
 import botao_recarregar
 import botao_retornar
+import botao_vincular
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class tela_usuario(object):
@@ -57,11 +63,18 @@ class tela_usuario(object):
         self.tabela.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tabela.setHorizontalHeaderItem(1, item)
+        self.botao_vincular = QtWidgets.QPushButton(Form)
+        self.botao_vincular.setGeometry(QtCore.QRect(450, 0, 91, 101))
+        self.botao_vincular.setStyleSheet("image: url(:/botaovincular/icones/vincular.png)")
+        self.botao_vincular.setText("")
+        self.botao_vincular.setObjectName("botao_vincular")
         self.carrega_tabela()
 
         self.botao_consultar.clicked.connect(self.tela_consulta_usuario)
         self.botao_alterar.clicked.connect(self.tela_altera_usuario)
         self.botao_adicionar.clicked.connect(self.tela_novo_usuario)
+        self.botao_excluir.clicked.connect(self.exclui_usuario)
+        self.botao_vincular.clicked.connect(self.tela_vincula_perfil)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -70,9 +83,15 @@ class tela_usuario(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         item = self.tabela.horizontalHeaderItem(0)
-        item.setText(_translate("Form", "CPF"))
+        item.setText(_translate("Form", "Código"))
         item = self.tabela.horizontalHeaderItem(1)
         item.setText(_translate("Form", "Nome"))
+
+        self.botao_recarregar.clicked.connect(self.carrega_tabela)
+        self.botao_retornar.clicked.connect(lambda: self.sairTela(Form))
+
+    def sairTela(self, formSistema):
+        formSistema.close()
 
     def carrega_tabela(self):
         lista = self.todos_usuarios()
@@ -130,8 +149,34 @@ class tela_usuario(object):
 
         print('abriu tela novo sistema')
 
+    def exclui_usuario(self):
+        ativa = self.tabela.currentRow()
+        id = self.tabela.item(ativa, 0)
+        user = UsuarioController(cpf_usuario=int(id.text()))
+        user.delete_usuario()
+        self.carrega_tabela()
+
+    def tela_vincula_perfil(self):
+        ativa = self.tabela.currentRow()
+        cpf = self.tabela.item(ativa, 0)
+
+        variaveis.cpf_usuario = cpf.text()
+        self.Form = QtWidgets.QWidget()
+        self.ui = vincula_perfil()
+        self.ui.setupUi(self.Form)
+        self.Form.show()
 
 
+
+if __name__ == "__main__":
+    import sys
+
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = Ui_Form()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec_())
 
 if __name__ == "__main__":
     import sys

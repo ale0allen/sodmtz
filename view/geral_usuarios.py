@@ -82,6 +82,7 @@ class geral_usuarios(object):
         obj.update_usuario(novo_nome=self.form_nome.text())
         print('Alterouuuu')
 
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

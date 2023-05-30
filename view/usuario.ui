@@ -129,9 +129,26 @@
     </property>
    </column>
   </widget>
+  <widget class="QPushButton" name="botao_vincular">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>0</y>
+     <width>91</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/botaovincular/icones/vincular.png)</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources>
   <include location="botao_adicionar.qrc"/>
+  <include location="botao_vincular.qrc"/>
   <include location="botao_retornar.qrc"/>
   <include location="botao_excluir.qrc"/>
   <include location="botao_consultar.qrc"/>
