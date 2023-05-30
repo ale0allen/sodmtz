@@ -4,7 +4,7 @@ import botao_cadastrar
 import botao_cancelar
 
 
-class Ui_Form(object):
+class novo_usuario_form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(400, 300)

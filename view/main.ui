@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>822</width>
-    <height>256</height>
+    <height>353</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,14 +17,14 @@
    <widget class="QPushButton" name="botao_perfil_consulta">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>230</x>
       <y>0</y>
       <width>161</width>
       <height>161</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/icone_perfil/2.png)</string>
+     <string notr="true">image: url(:/icone_perfil/icones/2.png)</string>
     </property>
     <property name="text">
      <string/>
@@ -33,14 +33,14 @@
    <widget class="QPushButton" name="botao_sistema_consulta">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>40</x>
       <y>0</y>
       <width>161</width>
       <height>161</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/icone_sistema/1.png)</string>
+     <string notr="true">image: url(:/icone_sistema/icones/1.png)</string>
     </property>
     <property name="text">
      <string/>
@@ -49,14 +49,50 @@
    <widget class="QPushButton" name="botao_matriz_consulta">
     <property name="geometry">
      <rect>
-      <x>500</x>
+      <x>450</x>
       <y>0</y>
       <width>161</width>
       <height>161</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/icone_matriz/3.png)</string>
+     <string notr="true">image: url(:/icone_matriz/icones/3.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="botao_usuarios_consulta">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>0</y>
+      <width>161</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/icone_usuarios/icones/USUARIOS.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="logo_agl">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>180</y>
+      <width>331</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/logo_agl/icones/agl.png);
+border: none;</string>
     </property>
     <property name="text">
      <string/>
@@ -130,9 +166,11 @@
   </action>
  </widget>
  <resources>
-  <include location="icones/icone_sistema.qrc"/>
-  <include location="icones/icone_matriz.qrc"/>
-  <include location="icones/icone_perfil.qrc"/>
+  <include location="icone_sistema.qrc"/>
+  <include location="logo_agl.qrc"/>
+  <include location="icone_usuarios.qrc"/>
+  <include location="icone_matriz.qrc"/>
+  <include location="icone_perfil.qrc"/>
  </resources>
  <connections/>
 </ui>

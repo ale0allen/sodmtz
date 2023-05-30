@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import  QTableWidgetItem
 import pandas as pd
 import variaveis
 from geral_usuarios import geral_usuarios
+from novo_usuario import novo_usuario_form
 
 import botao_adicionar
 import botao_alterar
@@ -13,7 +14,7 @@ import botao_recarregar
 import botao_retornar
 
 
-class Ui_Form(object):
+class tela_usuario(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(791, 523)
@@ -60,6 +61,7 @@ class Ui_Form(object):
 
         self.botao_consultar.clicked.connect(self.tela_consulta_usuario)
         self.botao_alterar.clicked.connect(self.tela_altera_usuario)
+        self.botao_adicionar.clicked.connect(self.tela_novo_usuario)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -119,6 +121,14 @@ class Ui_Form(object):
         self.ui = geral_usuarios()
         self.ui.setupUi(self.Form)
         self.Form.show()
+
+    def tela_novo_usuario(self):
+        self.Form = QtWidgets.QWidget()
+        self.ui = novo_usuario_form()
+        self.ui.setupUi(self.Form)
+        self.Form.show()
+
+        print('abriu tela novo sistema')
 
 
 
