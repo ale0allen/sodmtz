@@ -4,6 +4,8 @@ import botao_cancelar
 
 from controller.perfil import PerfilController
 from controller.usuario import UsuarioController
+from controller.vinculo import VinculoController
+
 import variaveis
 
 
@@ -53,7 +55,7 @@ class vincula_perfil(object):
         self.form_codigo.setObjectName("form_codigo")
         self.form_codigo.setText(str(pqp.cpf_usuario))
         self.form_codigo.setEnabled(False)
-
+        self.botao_cadastrar.clicked.connect(self.cria_vinculo)
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -82,6 +84,17 @@ class vincula_perfil(object):
     def carrega_opcoes(self):
         lista = self.todos_perfis()
         return lista
+
+    def cria_vinculo(self):
+        cpf_usuario = self.form_codigo.text()
+        perfil = self.box_sistema.currentText()
+        perfil = perfil.split('|')
+        cod_perfil= perfil[0]
+        vinculo = VinculoController(cpf_usuario=cpf_usuario, id_perfil=cod_perfil)
+        vinculo.set_vinculo()
+
+
+
 
 if __name__ == "__main__":
     import sys
