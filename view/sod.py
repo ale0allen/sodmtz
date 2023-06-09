@@ -8,6 +8,8 @@ import view.botao_retornar
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import  QTableWidgetItem
 import pandas as pd
+
+from view import variaveis
 from view.novo_sod import tela_novo_sod
 from controller.sod import SodController
 from view.geral_sod import geral_sod

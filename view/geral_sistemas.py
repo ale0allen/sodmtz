@@ -4,6 +4,8 @@ import view.variaveis
 from controller.sistema import SistemaController
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from view import variaveis
+
 
 class geral_sistemas(object):
     def setupUi(self, Form):

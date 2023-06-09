@@ -1,6 +1,8 @@
 import pandas as pd
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import  QTableWidgetItem
+
+from view import variaveis
 from view.novo_perfil import tela_novo_perfil
 from view.geral_perfil import geral_perfil
 import view.variaveis

@@ -7,6 +7,7 @@ from controller.usuario import UsuarioController
 from controller.vinculo import VinculoController
 
 import view.variaveis
+from view import variaveis
 
 
 class vincula_perfil(object):

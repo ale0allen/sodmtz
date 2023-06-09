@@ -3,6 +3,7 @@ from controller.usuario import UsuarioController
 from PyQt5.QtWidgets import  QTableWidgetItem
 import pandas as pd
 import view.variaveis
+from view import variaveis
 from view.geral_usuarios import geral_usuarios
 from view.novo_usuario import novo_usuario_form
 from view.vincula_perfil import vincula_perfil

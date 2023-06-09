@@ -3,6 +3,7 @@ import view.botao_cadastrar
 import view.botao_cancelar
 import view.variaveis
 from controller.usuario import UsuarioController
+from view import variaveis
 
 
 class geral_usuarios(object):

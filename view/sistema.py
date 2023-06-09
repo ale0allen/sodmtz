@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import  QTableWidgetItem
 import pandas as pd
 
+from view import variaveis
 from view.novo_sistema import novo_sistema
 from view.geral_sistemas import geral_sistemas
 import view.variaveis
