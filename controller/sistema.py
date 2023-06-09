@@ -75,6 +75,7 @@ class SistemaController:
         else:
             nome = self.nome
             proxima_linha = ws.max_row + 1
+            cod = "{:015}".format(proxima_linha)
             ws.cell(row=proxima_linha, column=1).value = proxima_linha
             ws.cell(row=proxima_linha, column=2).value = nome
             wb.save(filename=filename)

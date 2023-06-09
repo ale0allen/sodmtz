@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="botaovincular">
+    <file>icones/vincular.png</file>
+  </qresource>
+</RCC>

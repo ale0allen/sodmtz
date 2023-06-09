@@ -1,34 +1,48 @@
+from PyQt5 import QtCore, QtGui, QtWidgets
 import icone_matriz
 import icone_perfil
 import icone_sistema
+import icone_usuarios
+import logo_agl
 
-
-
-from PyQt5 import QtCore, QtGui, QtWidgets
 from sistema import tela_sistema
 from perfil import tela_perfis
 from sod import tela_matriz
+from usuario import tela_usuario
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(822, 256)
+        MainWindow.resize(822, 353)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.botao_perfil_consulta = QtWidgets.QPushButton(self.centralwidget)
-        self.botao_perfil_consulta.setGeometry(QtCore.QRect(310, 0, 161, 161))
-        self.botao_perfil_consulta.setStyleSheet("image: url(:/icone_perfil/2.png)")
+        self.botao_perfil_consulta.setGeometry(QtCore.QRect(230, 0, 161, 161))
+        self.botao_perfil_consulta.setStyleSheet("image: url(:/icone_perfil/icones/2.png)")
         self.botao_perfil_consulta.setText("")
         self.botao_perfil_consulta.setObjectName("botao_perfil_consulta")
         self.botao_sistema_consulta = QtWidgets.QPushButton(self.centralwidget)
-        self.botao_sistema_consulta.setGeometry(QtCore.QRect(120, 0, 161, 161))
-        self.botao_sistema_consulta.setStyleSheet("image: url(:/icone_sistema/1.png)")
+        self.botao_sistema_consulta.setGeometry(QtCore.QRect(40, 0, 161, 161))
+        self.botao_sistema_consulta.setStyleSheet("image: url(:/icone_sistema/icones/1.png)")
         self.botao_sistema_consulta.setText("")
         self.botao_sistema_consulta.setObjectName("botao_sistema_consulta")
         self.botao_matriz_consulta = QtWidgets.QPushButton(self.centralwidget)
-        self.botao_matriz_consulta.setGeometry(QtCore.QRect(500, 0, 161, 161))
-        self.botao_matriz_consulta.setStyleSheet("image: url(:/icone_matriz/3.png)")
+        self.botao_matriz_consulta.setGeometry(QtCore.QRect(450, 0, 161, 161))
+        self.botao_matriz_consulta.setStyleSheet("image: url(:/icone_matriz/icones/3.png)")
         self.botao_matriz_consulta.setText("")
         self.botao_matriz_consulta.setObjectName("botao_matriz_consulta")
+        self.botao_usuarios_consulta = QtWidgets.QPushButton(self.centralwidget)
+        self.botao_usuarios_consulta.setGeometry(QtCore.QRect(640, 0, 161, 161))
+        self.botao_usuarios_consulta.setStyleSheet("image: url(:/icone_usuarios/icones/USUARIOS.png)")
+        self.botao_usuarios_consulta.setText("")
+        self.botao_usuarios_consulta.setObjectName("botao_usuarios_consulta")
+        self.logo_agl = QtWidgets.QPushButton(self.centralwidget)
+        self.logo_agl.setEnabled(True)
+        self.logo_agl.setGeometry(QtCore.QRect(260, 180, 331, 121))
+        self.logo_agl.setStyleSheet("image: url(:/logo_agl/icones/agl.png);\n"
+"border: none;")
+        self.logo_agl.setText("")
+        self.logo_agl.setObjectName("logo_agl")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 822, 21))
@@ -68,8 +82,24 @@ class Ui_MainWindow(object):
         self.menuSistemas.triggered.connect(self.abre_tela_sistema)
         self.botao_perfil_consulta.clicked.connect(self.abre_tela_perfil)
         self.botao_matriz_consulta.clicked.connect(self.abre_tela_matriz)
+        self.botao_usuarios_consulta.clicked.connect(self.abre_tela_usuarios)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.menuSistemas.setTitle(_translate("MainWindow", "Sistemas"))
+        self.menuPerfiil.setTitle(_translate("MainWindow", "Perfiil"))
+        self.menuMatriz_SOD.setTitle(_translate("MainWindow", "Matriz SOD"))
+        self.menu_sistema_novo.setText(_translate("MainWindow", "Novo"))
+        self.menu_sistema_consulta.setText(_translate("MainWindow", "Consulta"))
+        self.menu_perfil_novo.setText(_translate("MainWindow", "Novo"))
+        self.menu_perfil_Consulta.setText(_translate("MainWindow", "Consulta"))
+        self.menu_matriz_novo.setText(_translate("MainWindow", "Novo"))
+        self.menu_matriz_consulta.setText(_translate("MainWindow", "Consulta"))
+
 
     def abre_tela_sistema(self):
         self.Form = QtWidgets.QWidget()
@@ -92,21 +122,12 @@ class Ui_MainWindow(object):
         self.Form.show()
         print('Tela Sistema')
 
-    def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.menuSistemas.setTitle(_translate("MainWindow", "Sistemas"))
-        self.menuPerfiil.setTitle(_translate("MainWindow", "Perfiil"))
-        self.menuMatriz_SOD.setTitle(_translate("MainWindow", "Matriz SOD"))
-        self.menu_sistema_novo.setText(_translate("MainWindow", "Novo"))
-        self.menu_sistema_consulta.setText(_translate("MainWindow", "Consulta"))
-        self.menu_perfil_novo.setText(_translate("MainWindow", "Novo"))
-        self.menu_perfil_Consulta.setText(_translate("MainWindow", "Consulta"))
-        self.menu_matriz_novo.setText(_translate("MainWindow", "Novo"))
-        self.menu_matriz_consulta.setText(_translate("MainWindow", "Consulta"))
-
-
-
+    def abre_tela_usuarios(self):
+        self.Form = QtWidgets.QWidget()
+        self.ui = tela_usuario()
+        self.ui.setupUi(self.Form)
+        self.Form.show()
+        print('Tela Sistema')
 
 
 
