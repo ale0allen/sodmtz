@@ -1,5 +1,5 @@
-import botao_cadastrar
-import botao_cancelar
+import view.botao_cadastrar
+import view.botao_cancelar
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets

@@ -1,12 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import botao_cadastrar
-import botao_cancelar
+import view.botao_cadastrar
+import view.botao_cancelar
 
 from controller.perfil import PerfilController
 from controller.usuario import UsuarioController
 from controller.vinculo import VinculoController
 
-import variaveis
+import view.variaveis
 
 
 class vincula_perfil(object):

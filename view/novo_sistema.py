@@ -1,10 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from controller.sistema import SistemaController
 
-import botao_cadastrar
-import botao_cancelar
-
-class novo_sistema_form(object):
+class novo_sistema(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(400, 300)
@@ -49,11 +46,14 @@ class novo_sistema_form(object):
         self.label.setText(_translate("Form", "Nome"))
 
 
+import view.botao_cadastrar
+import view.botao_cancelar
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = Ui_Form()
+    ui = novo_sistema()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())

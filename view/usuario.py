@@ -2,19 +2,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from controller.usuario import UsuarioController
 from PyQt5.QtWidgets import  QTableWidgetItem
 import pandas as pd
-import variaveis
-from geral_usuarios import geral_usuarios
-from novo_usuario import novo_usuario_form
-from vincula_perfil import vincula_perfil
+import view.variaveis
+from view.geral_usuarios import geral_usuarios
+from view.novo_usuario import novo_usuario_form
+from view.vincula_perfil import vincula_perfil
 
 
-import botao_adicionar
-import botao_alterar
-import botao_consultar
-import botao_excluir
-import botao_recarregar
-import botao_retornar
-import botao_vincular
+import view.botao_adicionar
+import view.botao_alterar
+import view.botao_consultar
+import view.botao_excluir
+import view.botao_recarregar
+import view.botao_retornar
+import view.botao_vincular
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets

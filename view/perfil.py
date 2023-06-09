@@ -1,16 +1,16 @@
 import pandas as pd
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import  QTableWidgetItem
-from novo_perfil import tela_novo_perfil
-from geral_perfil import geral_perfil
-import variaveis
+from view.novo_perfil import tela_novo_perfil
+from view.geral_perfil import geral_perfil
+import view.variaveis
 
-import botao_adicionar
-import botao_alterar
-import botao_consultar
-import botao_recarregar
-import botao_excluir
-import botao_retornar
+import view.botao_adicionar
+import view.botao_alterar
+import view.botao_consultar
+import view.botao_recarregar
+import view.botao_excluir
+import view.botao_retornar
 from controller.perfil import PerfilController
 
 
