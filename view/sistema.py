@@ -2,15 +2,17 @@ from controller.sistema import SistemaController
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import  QTableWidgetItem
 import pandas as pd
-import botao_adicionar
-import botao_alterar
-import botao_consultar
-import botao_recarregar
-import botao_excluir
-import botao_retornar
-from novo_sistema import novo_sistema_form
-from geral_sistemas import geral_sistemas
-import variaveis
+import view.botao_adicionar
+import view.botao_alterar
+import view.botao_consultar
+import view.botao_recarregar
+import view.botao_excluir
+import view.botao_retornar
+import view.variaveis
+from view import variaveis
+from view.novo_sistema import novo_sistema_form
+from view.geral_sistemas import geral_sistemas
+
 
 class tela_sistema(object):
     def setupUi(self, Form):

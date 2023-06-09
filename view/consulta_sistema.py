@@ -1,7 +1,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import botao_cadastrar
-import botao_cancelar
+import view.botao_cadastrar
+import view.botao_cancelar
 
 class tela_consulta_sistema(object):
     def setupUi(self, Form):

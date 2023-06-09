@@ -1,12 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import botao_cadastrar
-import botao_cancelar
+import view.botao_cadastrar
+import view.botao_cancelar
 
 from controller.perfil import PerfilController
 from controller.usuario import UsuarioController
 from controller.vinculo import VinculoController
 
-import variaveis
+import view.variaveis
+from view import variaveis
 
 
 class vincula_perfil(object):
@@ -100,7 +101,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = Ui_Form()
+    ui = vincula_perfil()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())

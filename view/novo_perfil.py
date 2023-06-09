@@ -1,5 +1,5 @@
-import botao_cadastrar
-import botao_cancelar
+import view.botao_cadastrar
+import view.botao_cancelar
 from controller.sistema import SistemaController
 from controller.perfil import PerfilController
 from PyQt5 import QtCore, QtGui, QtWidgets

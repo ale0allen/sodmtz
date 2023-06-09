@@ -1,7 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import botao_cadastrar
-import botao_cancelar
-import variaveis
+import view.botao_cadastrar
+import view.botao_cancelar
+import view.variaveis
+from view import variaveis
 from controller.usuario import UsuarioController
 
 

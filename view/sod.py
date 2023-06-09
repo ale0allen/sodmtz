@@ -1,17 +1,18 @@
-import botao_adicionar
-import botao_alterar
-import botao_consultar
-import botao_recarregar
-import botao_excluir
-import botao_retornar
+import view.botao_adicionar
+import view.botao_alterar
+import view.botao_consultar
+import view.botao_recarregar
+import view.botao_excluir
+import view.botao_retornar
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import  QTableWidgetItem
 import pandas as pd
-from novo_sod import tela_novo_sod
+from view.novo_sod import tela_novo_sod
 from controller.sod import SodController
-from geral_sod import geral_sod
-import variaveis
+from view.geral_sod import geral_sod
+import view.variaveis
+from view import variaveis
 
 class tela_matriz(object):
     def setupUi(self, Form):

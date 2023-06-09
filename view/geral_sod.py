@@ -1,8 +1,9 @@
-import botao_cadastrar
-import botao_cancelar
+import view.botao_cadastrar
+import view.botao_cancelar
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import variaveis
+import view.variaveis
+from view import variaveis
 from controller.sod import SodController
 from controller.perfil import PerfilController
 
