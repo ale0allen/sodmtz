@@ -10,3 +10,5 @@
 <p align="center">— Video com explicação do projeto https://www.youtube.com/watch?v=JzpyvujUN1Q.</p>
 
 <p align="center">— Após instalação utilizar o comando pip install requirements.txt para instalar pacotes necessários para execução do projeto.</p>
+
+<p align="center">— Projeto final com .exe na pasta dist.</p>
