@@ -8,3 +8,5 @@
 <p align="center">— Alterações podem ser executadas pelo pycharm ou vscode com instalação do python https://www.python.org/downloads/.</p>
 
 <p align="center">— Video com explicação do projeto https://www.youtube.com/watch?v=JzpyvujUN1Q.</p>
+
+<p align="center">— Após instalação utilizar o comando pip install requirements.txt para instalar pacotes necessários para execução do projeto.</p>
