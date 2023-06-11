@@ -3,3 +3,6 @@
 
 <p align="center">— Todo trabalho foi feito na linguagem Python e utilizando a biblioteca PyQT para o frot-end.</p>
 
+<p align="center">— Como armazenamento está sendo utilizado planilhas xlsx.</p>
+
+<p align="center">— Alterações podem ser executadas pelo pycharm ou vscode com instalação do python https://www.python.org/downloads/.</p>
