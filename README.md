@@ -6,3 +6,5 @@
 <p align="center">— Como armazenamento está sendo utilizado planilhas xlsx.</p>
 
 <p align="center">— Alterações podem ser executadas pelo pycharm ou vscode com instalação do python https://www.python.org/downloads/.</p>
+
+<p align="center">— Video com explicação do projeto https://www.youtube.com/watch?v=JzpyvujUN1Q.</p>
