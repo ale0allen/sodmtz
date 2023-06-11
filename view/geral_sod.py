@@ -3,6 +3,7 @@ import view.botao_cancelar
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import view.variaveis
+
 from controller.sod import SodController
 from controller.perfil import PerfilController
 from view import variaveis

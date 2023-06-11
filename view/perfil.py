@@ -7,6 +7,7 @@ from view.novo_perfil import tela_novo_perfil
 from view.geral_perfil import geral_perfil
 import view.variaveis
 
+
 import view.botao_adicionar
 import view.botao_alterar
 import view.botao_consultar

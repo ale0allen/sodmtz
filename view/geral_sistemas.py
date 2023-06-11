@@ -1,6 +1,7 @@
 import view.botao_cadastrar
 import view.botao_cancelar
 import view.variaveis
+
 from controller.sistema import SistemaController
 from PyQt5 import QtCore, QtGui, QtWidgets
 

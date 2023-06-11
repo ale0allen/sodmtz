@@ -3,10 +3,20 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import  QTableWidgetItem
 import pandas as pd
 
-from view import variaveis
+
+
 from view.novo_sistema import novo_sistema
-from view.geral_sistemas import geral_sistemas
+
+import view.botao_adicionar
+import view.botao_alterar
+import view.botao_consultar
+import view.botao_recarregar
+import view.botao_excluir
+import view.botao_retornar
 import view.variaveis
+from view import variaveis
+from view.geral_sistemas import geral_sistemas
+
 
 class tela_sistema(object):
     def setupUi(self, Form):
@@ -141,14 +151,6 @@ class tela_sistema(object):
 
     def sairTela(self, formSistema):
         formSistema.close()
-
-
-import view.botao_adicionar
-import view.botao_alterar
-import view.botao_consultar
-import view.botao_recarregar
-import view.botao_excluir
-import view.botao_retornar
 
 if __name__ == "__main__":
     import sys

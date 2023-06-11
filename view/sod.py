@@ -10,10 +10,12 @@ from PyQt5.QtWidgets import  QTableWidgetItem
 import pandas as pd
 
 from view import variaveis
+
 from view.novo_sod import tela_novo_sod
 from controller.sod import SodController
 from view.geral_sod import geral_sod
 import view.variaveis
+
 
 class tela_matriz(object):
     def setupUi(self, Form):
